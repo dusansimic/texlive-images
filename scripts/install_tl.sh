@@ -19,7 +19,7 @@ zcat < install-tl-unx.tar.gz | tar xf -
 
 pushd install-tl-*
 
-perl ./install-tl -repository ftp://tug.org/historic/systems/texlive/${TL_VERSION}/tlnet-final -no-doc-install -no-src-install -no-interaction
+perl ./install-tl ${TL_VERSION} -no-doc-install -no-src-install -no-interaction
 
 popd
 
