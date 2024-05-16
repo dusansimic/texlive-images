@@ -35,9 +35,9 @@ jobs:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
             type=raw,value=${{ matrix.tag }}-tl${{ matrix.version }}
-          build-args: |
-            IMAGE_TAG=${{ matrix.tag }}
-            TL_VERSION=${{ matrix.version }}
+          labels: |
+            me.dusansimic.texlive-images.tag=${{ matrix.tag }}
+            me.dusansimic.texlive-images.version=${{ matrix.version }}
       - name: Build and push image
         uses: docker/build-push-action@v5
         with:
@@ -45,3 +45,6 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+          build-args: |
+            IMAGE_TAG=${{ fromJson(steps.meta.outputs.json).labels['me.dusansimic.texlive-images.tag'] }}
+            TL_VERSION=${{ fromJson(steps.meta.outputs.json).labels['me.dusansimic.texlive-images.version'] }}
