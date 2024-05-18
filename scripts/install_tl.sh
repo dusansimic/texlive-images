@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-TL_VERSION="$1"
+TL_VERSION="${1:-TL_VERSION}"
 
 if [ -z "${TL_VERSION}" ]
 then
