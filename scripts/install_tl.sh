@@ -12,18 +12,16 @@ fi
 apt-get update
 apt-get install -y perl curl
 
-pushd /tmp
+cd /tmp
 
 curl -L -o install-tl.unx.tar.gz https://texlive.info/historic/systems/texlive/${TL_VERSION}/install-tl-unx.tar.gz
 mkdir tl
 tar -xf install-tl-unx.tar.gz -C tl --strip-components=1
 
-pushd tl
+cd /tmp/tl
 
 perl ./install-tl -repository ftp://tug.org/historic/systems/texlive/${TL_VERSION}/tlnet-final -no-doc-install -no-src-install -no-interaction
 
-popd
+cd /tmp
 
 rm -rf texlive.profile tl
-
-popd
