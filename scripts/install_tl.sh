@@ -12,6 +12,8 @@ fi
 apt-get update
 apt-get install -y perl curl
 
+echo "Downloading TeXLive ${TL_VERSION}..."
+
 cd /tmp
 
 curl -L -o install-tl-unx.tar.gz https://texlive.info/historic/systems/texlive/${TL_VERSION}/install-tl-unx.tar.gz
