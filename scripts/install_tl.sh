@@ -16,7 +16,7 @@ cd /tmp
 
 curl -L -o install-tl-unx.tar.gz https://texlive.info/historic/systems/texlive/${TL_VERSION}/install-tl-unx.tar.gz
 mkdir tl
-tar -xzf install-tl-unx.tar.gz -C tl --strip-components=1
+zcat < install-tl-unx.tar.gz | tar xf -C tl --strip-components=1 -
 
 cd /tmp/tl
 
