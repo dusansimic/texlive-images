@@ -2,6 +2,10 @@
 set -e
 
 TL_VERSION="${1:-${TL_VERSION}}"
+TL_REPO_URL="ftp://tug.org/texlive/tlnet/tlpkg/texlive.tlpdb"
+if [ "$TL_VERSION" -lt "2024" ]; then
+  TL_REPO_URL="ftp://tug.org/historic/systems/texlive/${TL_VERSION}/tlnet-final"
+fi
 
 if [ -z "${TL_VERSION}" ]
 then
@@ -22,7 +26,7 @@ tar -xzf install-tl-unx.tar.gz -C tl --strip-components=1
 
 cd /tmp/tl
 
-perl ./install-tl -repository ftp://tug.org/historic/systems/texlive/${TL_VERSION}/tlnet-final -no-doc-install -no-src-install -no-interaction
+perl ./install-tl -repository "${TL_REPO_URL}" -no-doc-install -no-src-install -no-interaction
 
 cd /tmp
 
