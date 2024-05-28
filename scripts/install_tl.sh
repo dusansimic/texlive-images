@@ -31,3 +31,12 @@ perl ./install-tl -repository "${TL_REPO_URL}" -no-doc-install -no-src-install -
 cd /tmp
 
 rm -rf texlive.profile tl
+
+echo "Installing LaTeX Workshop dependencies..."
+
+apt-get install -y libyaml-tiny-perl libfile-homedir-perl
+
+echo "Cleanup..."
+
+apt clean
+rm -rf /var/lib/apt/lists/*

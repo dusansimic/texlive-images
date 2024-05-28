@@ -1,5 +1,5 @@
 ARG IMAGE_TAG
-FROM docker.io/library/ubuntu:${IMAGE_TAG}
+FROM mcr.microsoft.com/devcontainers/base:ubuntu-${IMAGE_TAG}
 
 ARG TL_VERSION
 
