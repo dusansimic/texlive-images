@@ -34,7 +34,7 @@ case "$TL_VERSION" in
     _OPTS=""
 esac
 
-perl ./install-tl -repository "${TL_REPO_URL}" $_OPTS -no-interaction
+perl ./install-tl -repository "${TL_REPO_URL}" -no-interaction ${_OPTS}
 
 cd /tmp
 
