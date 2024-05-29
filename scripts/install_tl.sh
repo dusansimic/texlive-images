@@ -26,7 +26,15 @@ tar -xzf install-tl-unx.tar.gz -C tl --strip-components=1
 
 cd /tmp/tl
 
-perl ./install-tl -repository "${TL_REPO_URL}" -no-doc-install -no-src-install -no-interaction
+case "$TL_VERSION" in
+  2024 | 2023)
+    _OPTS="-no-doc-install -no-src-install"
+    ;;
+  2022)
+    _OPTS=""
+esac
+
+perl ./install-tl -repository "${TL_REPO_URL}" $_OPTS -no-interaction
 
 cd /tmp
 
