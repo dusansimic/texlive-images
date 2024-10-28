@@ -1,0 +1,48 @@
+name: Push images
+
+on:
+  workflow_dispatch:
+    inputs:
+      image:
+        description: Image ID
+        required: true
+
+jobs:
+  build-and-push:
+    name: Build and push images
+    if: ${{ github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    environment: publishing
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+      - name: Checkout devcontainers/images
+        id: checkout_devctrsimgs
+        uses: actions/checkout@v3
+        with:
+          path: devctrsimgs
+          repository: devcontainers/images
+      - name: Login to registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io/${{ github.repository }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build and push
+        id: build_and_push
+        env:
+          REGISTRY: ghcr.io
+          REGISTRY_BASE_PATH: ${{ github.repository }}
+        run: |
+          set -e
+
+          npm install --global @devcontainers/cli
+
+          devctrs/build/vscdc --replace-images \
+                              --release main \
+                              --registry "$REGISTRY" \
+                              --registry-path "$REGISTRY_BASE_PATH" \
+                              ${{ github.event.inputs.image }}

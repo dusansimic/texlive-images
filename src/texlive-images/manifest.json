@@ -1,0 +1,73 @@
+{
+  "version": "0.1.0",
+  "variants": [
+    "2023-focal",
+    "2023-jammy",
+    "2023-noble",
+    "2024-focal",
+    "2024-jammy",
+    "2024-noble"
+  ],
+  "build": {
+    "rootDistro": "debian",
+    "latest": "2024-noble",
+    "tags": [
+      "texlive-images:${VERSION}-${VARIANT}"
+    ],
+    "variantTags": {
+      "2023-focal": [
+        "texlive-images:${VERSION}-2023-ubuntu20.04"
+      ],
+      "2023-jammy": [
+        "texlive-images:${VERSION}-2023-ubuntu22.04"
+      ],
+      "2023-noble": [
+        "texlive-images:${VERSION}-2023-ubuntu24.04"
+      ],
+      "2024-focal": [
+        "texlive-images:${VERSION}-2024-ubuntu20.04",
+        "texlive-images:${VERSION}-2024-ubuntu"
+      ],
+      "2024-jammy": [
+        "texlive-images:${VERSION}-2024-ubuntu22.04"
+      ],
+      "2024-noble": [
+        "texlive-images:${VERSION}-2024-ubuntu24.04"
+      ]
+    },
+    "variantBuildArgs": {
+      "2023-focal": {
+        "IMAGE_TAG": "focal",
+        "TL_VERSION": "2023"
+      },
+      "2023-jammy": {
+        "IMAGE_TAG": "jammy",
+        "TL_VERSION": "2023"
+      },
+      "2023-noble": {
+        "IMAGE_TAG": "noble",
+        "TL_VERSION": "2023"
+      },
+      "2024-focal": {
+        "IMAGE_TAG": "focal",
+        "TL_VERSION": "2024"
+      },
+      "2024-jammy": {
+        "IMAGE_TAG": "jammy",
+        "TL_VERSION": "2024"
+      },
+      "2024-noble": {
+        "IMAGE_TAG": "noble",
+        "TL_VERSION": "2024"
+      }
+    }
+  },
+  "dependencies": {
+    "apt": [
+      "perl",
+      "curl",
+      "libyaml-tiny-perl",
+      "libfile-homedir-perl"
+    ]
+  }
+}
