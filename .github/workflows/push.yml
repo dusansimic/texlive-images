@@ -18,10 +18,10 @@ jobs:
     environment: publishing
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Checkout devcontainers/images
         id: checkout_devctrsimgs
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           path: devctrsimgs
           repository: devcontainers/images
@@ -41,7 +41,7 @@ jobs:
 
           npm install --global @devcontainers/cli
 
-          devctrs/build/vscdc --replace-images \
+          devctrsimgs/build/vscdc --replace-images \
                               --release main \
                               --registry "$REGISTRY" \
                               --registry-path "$REGISTRY_BASE_PATH" \
