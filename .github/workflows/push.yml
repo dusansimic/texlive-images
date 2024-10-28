@@ -39,7 +39,10 @@ jobs:
         run: |
           set -e
 
-          npm install ./devctrsimgs
+          cd "$GITHUB_WORKSPACE/devctrsimgs"
+          yarn install
+          mv node_modules/ ../
+          cd "$GITHUB_WORKSPACE"
           npm install --global @devcontainers/cli
 
           devctrsimgs/build/vscdc --replace-images \
