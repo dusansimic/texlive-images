@@ -39,6 +39,7 @@ jobs:
         run: |
           set -e
 
+          npm install ./devctrsimgs
           npm install --global @devcontainers/cli
 
           devctrsimgs/build/vscdc --replace-images \
